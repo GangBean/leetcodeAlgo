@@ -3,6 +3,7 @@ package main.problem;
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import main.util.Input;
 
 public class _1929 implements Problem {
@@ -13,16 +14,22 @@ public class _1929 implements Problem {
         for (List<String> input : inputs) {
             System.out.println("\ninput: " + input);
 
-            String[] output = new String[input.size() * 2];
-            int i = 0;
-            for (String s : input) {
-                output[i] = s;
-                output[i + input.size()] = s;
-                i++;
-            }
+            int[] output = getConcatenation(
+                input.stream().mapToInt(Integer::parseInt).toArray());
 
-            System.out.println("output:" + Arrays.asList(output));
+            System.out.println("output:" + Arrays.stream(output).boxed().collect(Collectors.toList()));
         }
+    }
+
+    public int[] getConcatenation(int[] nums) {
+        int[] output = new int[nums.length * 2];
+        int i = 0;
+        for (int s : nums) {
+            output[i] = s;
+            output[i + nums.length] = s;
+            i++;
+        }
+        return output;
     }
 
 }
