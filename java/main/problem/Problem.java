@@ -4,6 +4,6 @@ import java.io.File;
 
 public interface Problem {
 
-    void test(File input);
+    void test(File file);
 
 }
